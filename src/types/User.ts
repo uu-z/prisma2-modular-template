@@ -1,5 +1,4 @@
 import { objectType, extendType } from 'nexus'
-import { $Query, $Mutation } from '../utils/helper'
 import { compare, hash } from 'bcryptjs'
 import { sign } from 'jsonwebtoken'
 import { stringArg } from 'nexus'
