@@ -1,5 +1,4 @@
-import { objectType } from 'nexus'
-import { $Query, $Mutation } from '../utils/helper'
+import { objectType, extendType } from 'nexus'
 
 export const Post = objectType({
   name: 'Post',
@@ -14,19 +13,25 @@ export const Post = objectType({
   },
 })
 
-$Query(t => {
-  t.crud.post()
-  t.crud.posts({
-    filtering: true,
-    pagination: true,
-    ordering: true,
-  })
+export const PostQuery = extendType({
+  type: 'Query',
+  definition(t) {
+    t.crud.post()
+    t.crud.posts({
+      filtering: true,
+      pagination: true,
+      ordering: true,
+    })
+  },
 })
 
-$Mutation(t => {
-  t.crud.createOnePost()
-  t.crud.deleteOnePost()
-  t.crud.deleteManyPost()
-  t.crud.updateManyPost()
-  t.crud.updateOnePost()
+export const PostMutation = extendType({
+  type: 'Mutation',
+  definition(t) {
+    t.crud.createOnePost()
+    t.crud.deleteOnePost()
+    t.crud.deleteManyPost()
+    t.crud.updateManyPost()
+    t.crud.updateOnePost()
+  },
 })
