@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 async function main() {
-  const user1 = await prisma.users.create({
+  const user1 = await prisma.user.create({
     data: {
       email: 'alice@prisma.io',
       name: 'Alice',
@@ -16,7 +16,7 @@ async function main() {
       },
     },
   })
-  const user2 = await prisma.users.create({
+  const user2 = await prisma.user.create({
     data: {
       email: 'bob@prisma.io',
       name: 'Bob',
