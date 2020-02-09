@@ -1,11 +1,12 @@
-generator photon {
-  provider = "photonjs"
-}
-
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://admin:admin@localhost:5432/default?schema=my_db"
+  url      = "postgres://djvgdeemjmlduz:c583235bac6e3e1798b1f6d54bdf1bd755ad7e0f5d6b183a6cbd0279ca6c6380@ec2-3-213-192-58.compute-1.amazonaws.com:5432/dam4abo4pjvuj3"
 }
+
+generator client {
+  provider = "prisma-client-js"
+}
+
 
 model Post {
   id        String   @default(cuid()) @id

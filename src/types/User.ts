@@ -52,7 +52,7 @@ export const userMutation = extendType({
       resolve: async (_parent, args, ctx) => {
         const { name, email, password } = args
         const hashedPassword = await hash(password, 10)
-        const user = await ctx.photon.users.create({
+        const user = await ctx.prisma.user.create({
           data: {
             name,
             email,
@@ -73,7 +73,7 @@ export const userMutation = extendType({
         password: stringArg({ nullable: false }),
       },
       resolve: async (_parent, { email, password }, context) => {
-        const user = await context.photon.users.findOne({
+        const user = await context.prisma.user.findOne({
           where: {
             email,
           },
