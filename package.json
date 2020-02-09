@@ -4,7 +4,6 @@
   "scripts": {
     "start": "ts-node -T src/server",
     "clean": "rm -rf dist",
-    "build": "npm -s run clean && npm -s run generate && tsc",
     "generate": "npm -s run generate:prisma && npm -s run generate:nexus",
     "generate:prisma": "prisma2 generate",
     "generate:nexus": "ts-node --transpile-only src/schema",
@@ -26,7 +25,7 @@
   "devDependencies": {
     "@types/bcryptjs": "2.4.2",
     "@types/jsonwebtoken": "8.3.5",
-    "@types/node": "12.12.7",
+    "@types/node": "^12.12.7",
     "@types/ws": "6.0.3",
     "prisma2": "^2.0.0-preview021",
     "ts-node": "8.5.2",

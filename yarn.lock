@@ -92,10 +92,10 @@
   resolved "https://registry.npm.taobao.org/@types/node/download/@types/node-13.7.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fnode%2Fdownload%2F%40types%2Fnode-13.7.0.tgz#b417deda18cf8400f278733499ad5547ed1abec4"
   integrity sha1-tBfe2hjPhADyeHM0ma1VR+0avsQ=
 
-"@types/node@12.12.7":
-  version "12.12.7"
-  resolved "https://registry.npm.taobao.org/@types/node/download/@types/node-12.12.7.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fnode%2Fdownload%2F%40types%2Fnode-12.12.7.tgz#01e4ea724d9e3bd50d90c11fd5980ba317d8fa11"
-  integrity sha1-AeTqck2eO9UNkMEf1ZgLoxfY+hE=
+"@types/node@^12.12.7":
+  version "12.12.26"
+  resolved "https://registry.npm.taobao.org/@types/node/download/@types/node-12.12.26.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fnode%2Fdownload%2F%40types%2Fnode-12.12.26.tgz#213e153babac0ed169d44a6d919501e68f59dea9"
+  integrity sha1-IT4VO6usDtFp1EptkZUB5o9Z3qk=
 
 "@types/range-parser@*":
   version "1.2.3"
