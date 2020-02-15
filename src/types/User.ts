@@ -1,4 +1,4 @@
-import { objectType, extendType } from 'nexus'
+import { objectType, extendType, ext } from 'nexus'
 import { compare, hash } from 'bcryptjs'
 import { sign } from 'jsonwebtoken'
 import { stringArg } from 'nexus'
@@ -41,7 +41,6 @@ export const userMutation = extendType({
     t.crud.deleteManyUser()
     t.crud.updateOneUser()
     t.crud.updateManyUser()
-
     t.field('signup', {
       type: 'AuthPayload',
       args: {
