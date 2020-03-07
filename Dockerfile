@@ -5,6 +5,8 @@ WORKDIR /opt/app
 
 RUN yarn install --production=true
 
+RUN npm prune --production
+
 ENV PORT 80
 EXPOSE 80
 
