@@ -9,6 +9,7 @@ new GraphQLServer({
   middlewares: [permissions],
 }).start({ tracing: false, port: process.env.PORT || 4000 }, () =>
   console.log(
-    `🚀 Server ready at: http://localhost:4000\n⭐️ See sample queries: http://pris.ly/e/ts/graphql-auth#5-using-the-graphql-api`,
+    `🚀 Server ready at: http://localhost:${process.env.PORT ||
+      4000}\n⭐️ See sample queries: http://pris.ly/e/ts/graphql-auth#5-using-the-graphql-api`,
   ),
 )
