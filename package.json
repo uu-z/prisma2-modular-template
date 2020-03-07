@@ -10,10 +10,11 @@
     "postinstall": "npm -s run generate",
     "dev": "ts-node-dev --no-notify --respawn --transpileOnly src/server",
     "seed": "ts-node prisma/seed",
-    "migrate": "prisma2 migrate save --experimental"
+    "migrate": "prisma2 migrate save --experimental",
+    "migrate:up": "prisma2 migrate up --experimental"
   },
   "dependencies": {
-    "@prisma/client": "^2.0.0-preview021",
+    "@prisma/client": "^2.0.0-preview023",
     "bcryptjs": "2.4.3",
     "graphql": "14.6.0",
     "graphql-shield": "5.7.3",
@@ -23,7 +24,7 @@
     "nexus-prisma": "0.9.1",
     "ts-node": "8.5.2",
     "typescript": "3.7.2",
-    "prisma2": "^2.0.0-preview021"
+    "prisma2": "^2.0.0-preview023"
   },
   "devDependencies": {
     "@types/bcryptjs": "2.4.2",

@@ -34,6 +34,10 @@ export interface NexusGenInputs {
     not?: any | null; // DateTime
     notIn?: any[] | null; // [DateTime!]
   }
+  FirstNameLastNameCompoundUniqueInput: { // input type
+    firstName: string; // String!
+    lastName: string; // String!
+  }
   NullableStringFilter: { // input type
     contains?: string | null; // String
     endsWith?: string | null; // String
@@ -179,7 +183,9 @@ export interface NexusGenInputs {
   }
   UserCreateInput: { // input type
     email: string; // String!
+    firstName?: string | null; // String
     id?: string | null; // String
+    lastName?: string | null; // String
     name?: string | null; // String
     password: string; // String!
     posts?: NexusGenInputs['PostCreateManyWithoutAuthorInput'] | null; // PostCreateManyWithoutAuthorInput
@@ -190,26 +196,34 @@ export interface NexusGenInputs {
   }
   UserCreateWithoutPostsInput: { // input type
     email: string; // String!
+    firstName?: string | null; // String
     id?: string | null; // String
+    lastName?: string | null; // String
     name?: string | null; // String
     password: string; // String!
   }
   UserOrderByInput: { // input type
     email?: NexusGenEnums['OrderByArg'] | null; // OrderByArg
+    firstName?: NexusGenEnums['OrderByArg'] | null; // OrderByArg
     id?: NexusGenEnums['OrderByArg'] | null; // OrderByArg
+    lastName?: NexusGenEnums['OrderByArg'] | null; // OrderByArg
     name?: NexusGenEnums['OrderByArg'] | null; // OrderByArg
     password?: NexusGenEnums['OrderByArg'] | null; // OrderByArg
   }
   UserUpdateInput: { // input type
     email?: string | null; // String
+    firstName?: string | null; // String
     id?: string | null; // String
+    lastName?: string | null; // String
     name?: string | null; // String
     password?: string | null; // String
     posts?: NexusGenInputs['PostUpdateManyWithoutAuthorInput'] | null; // PostUpdateManyWithoutAuthorInput
   }
   UserUpdateManyMutationInput: { // input type
     email?: string | null; // String
+    firstName?: string | null; // String
     id?: string | null; // String
+    lastName?: string | null; // String
     name?: string | null; // String
     password?: string | null; // String
   }
@@ -223,7 +237,9 @@ export interface NexusGenInputs {
   }
   UserUpdateWithoutPostsDataInput: { // input type
     email?: string | null; // String
+    firstName?: string | null; // String
     id?: string | null; // String
+    lastName?: string | null; // String
     name?: string | null; // String
     password?: string | null; // String
   }
@@ -234,7 +250,9 @@ export interface NexusGenInputs {
   UserWhereInput: { // input type
     AND?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
     email?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    firstName?: NexusGenInputs['NullableStringFilter'] | null; // NullableStringFilter
     id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    lastName?: NexusGenInputs['NullableStringFilter'] | null; // NullableStringFilter
     name?: NexusGenInputs['NullableStringFilter'] | null; // NullableStringFilter
     NOT?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
     OR?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
@@ -243,6 +261,7 @@ export interface NexusGenInputs {
   }
   UserWhereUniqueInput: { // input type
     email?: string | null; // String
+    firstName_lastName?: NexusGenInputs['FirstNameLastNameCompoundUniqueInput'] | null; // FirstNameLastNameCompoundUniqueInput
     id?: string | null; // String
   }
 }
@@ -272,6 +291,7 @@ export interface NexusGenRootTypes {
 export interface NexusGenAllTypes extends NexusGenRootTypes {
   BooleanFilter: NexusGenInputs['BooleanFilter'];
   DateTimeFilter: NexusGenInputs['DateTimeFilter'];
+  FirstNameLastNameCompoundUniqueInput: NexusGenInputs['FirstNameLastNameCompoundUniqueInput'];
   NullableStringFilter: NexusGenInputs['NullableStringFilter'];
   PostCreateInput: NexusGenInputs['PostCreateInput'];
   PostCreateManyWithoutAuthorInput: NexusGenInputs['PostCreateManyWithoutAuthorInput'];
@@ -343,7 +363,9 @@ export interface NexusGenFieldTypes {
   }
   User: { // field return type
     email: string; // String!
+    firstName: string | null; // String
     id: string; // String!
+    lastName: string | null; // String
     name: string | null; // String
     posts: NexusGenRootTypes['Post'][]; // [Post!]!
   }
@@ -400,8 +422,8 @@ export interface NexusGenArgTypes {
       where: NexusGenInputs['PostWhereUniqueInput']; // PostWhereUniqueInput!
     }
     posts: { // args
-      after?: string | null; // String
-      before?: string | null; // String
+      after?: NexusGenInputs['PostWhereUniqueInput'] | null; // PostWhereUniqueInput
+      before?: NexusGenInputs['PostWhereUniqueInput'] | null; // PostWhereUniqueInput
       first?: number | null; // Int
       last?: number | null; // Int
       orderBy?: NexusGenInputs['PostOrderByInput'] | null; // PostOrderByInput
@@ -412,13 +434,23 @@ export interface NexusGenArgTypes {
       where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
     }
     users: { // args
-      after?: string | null; // String
-      before?: string | null; // String
+      after?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
+      before?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
       first?: number | null; // Int
       last?: number | null; // Int
       orderBy?: NexusGenInputs['UserOrderByInput'] | null; // UserOrderByInput
       skip?: number | null; // Int
       where?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    }
+  }
+  User: {
+    posts: { // args
+      after?: NexusGenInputs['PostWhereUniqueInput'] | null; // PostWhereUniqueInput
+      before?: NexusGenInputs['PostWhereUniqueInput'] | null; // PostWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+      orderBy?: NexusGenInputs['PostOrderByInput'] | null; // PostOrderByInput
+      skip?: number | null; // Int
     }
   }
 }
@@ -430,7 +462,7 @@ export interface NexusGenInheritedFields {}
 
 export type NexusGenObjectNames = "AuthPayload" | "BatchPayload" | "Mutation" | "Post" | "Query" | "User";
 
-export type NexusGenInputNames = "BooleanFilter" | "DateTimeFilter" | "NullableStringFilter" | "PostCreateInput" | "PostCreateManyWithoutAuthorInput" | "PostCreateWithoutAuthorInput" | "PostFilter" | "PostOrderByInput" | "PostScalarWhereInput" | "PostUpdateInput" | "PostUpdateManyDataInput" | "PostUpdateManyMutationInput" | "PostUpdateManyWithWhereNestedInput" | "PostUpdateManyWithoutAuthorInput" | "PostUpdateWithWhereUniqueWithoutAuthorInput" | "PostUpdateWithoutAuthorDataInput" | "PostUpsertWithWhereUniqueWithoutAuthorInput" | "PostWhereInput" | "PostWhereUniqueInput" | "StringFilter" | "UserCreateInput" | "UserCreateOneWithoutPostsInput" | "UserCreateWithoutPostsInput" | "UserOrderByInput" | "UserUpdateInput" | "UserUpdateManyMutationInput" | "UserUpdateOneWithoutPostsInput" | "UserUpdateWithoutPostsDataInput" | "UserUpsertWithoutPostsInput" | "UserWhereInput" | "UserWhereUniqueInput";
+export type NexusGenInputNames = "BooleanFilter" | "DateTimeFilter" | "FirstNameLastNameCompoundUniqueInput" | "NullableStringFilter" | "PostCreateInput" | "PostCreateManyWithoutAuthorInput" | "PostCreateWithoutAuthorInput" | "PostFilter" | "PostOrderByInput" | "PostScalarWhereInput" | "PostUpdateInput" | "PostUpdateManyDataInput" | "PostUpdateManyMutationInput" | "PostUpdateManyWithWhereNestedInput" | "PostUpdateManyWithoutAuthorInput" | "PostUpdateWithWhereUniqueWithoutAuthorInput" | "PostUpdateWithoutAuthorDataInput" | "PostUpsertWithWhereUniqueWithoutAuthorInput" | "PostWhereInput" | "PostWhereUniqueInput" | "StringFilter" | "UserCreateInput" | "UserCreateOneWithoutPostsInput" | "UserCreateWithoutPostsInput" | "UserOrderByInput" | "UserUpdateInput" | "UserUpdateManyMutationInput" | "UserUpdateOneWithoutPostsInput" | "UserUpdateWithoutPostsDataInput" | "UserUpsertWithoutPostsInput" | "UserWhereInput" | "UserWhereUniqueInput";
 
 export type NexusGenEnumNames = "OrderByArg";
 

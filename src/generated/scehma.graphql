@@ -29,6 +29,11 @@ input DateTimeFilter {
   notIn: [DateTime!]
 }
 
+input FirstNameLastNameCompoundUniqueInput {
+  firstName: String!
+  lastName: String!
+}
+
 type Mutation {
   createOnePost(data: PostCreateInput!): Post!
   createOneUser(data: UserCreateInput!): User!
@@ -208,9 +213,9 @@ input PostWhereUniqueInput {
 
 type Query {
   post(where: PostWhereUniqueInput!): Post
-  posts(after: String, before: String, first: Int, last: Int, orderBy: PostOrderByInput, skip: Int, where: PostWhereInput): [Post!]!
+  posts(after: PostWhereUniqueInput, before: PostWhereUniqueInput, first: Int, last: Int, orderBy: PostOrderByInput, skip: Int, where: PostWhereInput): [Post!]!
   user(where: UserWhereUniqueInput!): User
-  users(after: String, before: String, first: Int, last: Int, orderBy: UserOrderByInput, skip: Int, where: UserWhereInput): [User!]!
+  users(after: UserWhereUniqueInput, before: UserWhereUniqueInput, first: Int, last: Int, orderBy: UserOrderByInput, skip: Int, where: UserWhereInput): [User!]!
 }
 
 input StringFilter {
@@ -229,14 +234,18 @@ input StringFilter {
 
 type User {
   email: String!
+  firstName: String
   id: String!
+  lastName: String
   name: String
-  posts: [Post!]!
+  posts(after: PostWhereUniqueInput, before: PostWhereUniqueInput, first: Int, last: Int, orderBy: PostOrderByInput, skip: Int): [Post!]!
 }
 
 input UserCreateInput {
   email: String!
+  firstName: String
   id: String
+  lastName: String
   name: String
   password: String!
   posts: PostCreateManyWithoutAuthorInput
@@ -249,21 +258,27 @@ input UserCreateOneWithoutPostsInput {
 
 input UserCreateWithoutPostsInput {
   email: String!
+  firstName: String
   id: String
+  lastName: String
   name: String
   password: String!
 }
 
 input UserOrderByInput {
   email: OrderByArg
+  firstName: OrderByArg
   id: OrderByArg
+  lastName: OrderByArg
   name: OrderByArg
   password: OrderByArg
 }
 
 input UserUpdateInput {
   email: String
+  firstName: String
   id: String
+  lastName: String
   name: String
   password: String
   posts: PostUpdateManyWithoutAuthorInput
@@ -271,7 +286,9 @@ input UserUpdateInput {
 
 input UserUpdateManyMutationInput {
   email: String
+  firstName: String
   id: String
+  lastName: String
   name: String
   password: String
 }
@@ -287,7 +304,9 @@ input UserUpdateOneWithoutPostsInput {
 
 input UserUpdateWithoutPostsDataInput {
   email: String
+  firstName: String
   id: String
+  lastName: String
   name: String
   password: String
 }
@@ -300,7 +319,9 @@ input UserUpsertWithoutPostsInput {
 input UserWhereInput {
   AND: [UserWhereInput!]
   email: StringFilter
+  firstName: NullableStringFilter
   id: StringFilter
+  lastName: NullableStringFilter
   name: NullableStringFilter
   NOT: [UserWhereInput!]
   OR: [UserWhereInput!]
@@ -310,5 +331,6 @@ input UserWhereInput {
 
 input UserWhereUniqueInput {
   email: String
+  firstName_lastName: FirstNameLastNameCompoundUniqueInput
   id: String
 }

@@ -18,7 +18,9 @@ export const User = objectType({
     t.model.id()
     t.model.name()
     t.model.email()
-    t.model.posts({ pagination: false })
+    t.model.firstName()
+    t.model.lastName()
+    t.model.posts({ pagination: true, ordering: true })
   },
 })
 
