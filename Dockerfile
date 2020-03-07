@@ -5,8 +5,6 @@ WORKDIR /opt/app
 
 RUN npm install
 
-RUN npm prune --production
-
 ENV PORT 80
 EXPOSE 80
 
