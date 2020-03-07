@@ -1,9 +1,9 @@
-FROM node:12.4.0
+FROM node:12-alpine
 
 ADD ./ /opt/app
 WORKDIR /opt/app
 
-RUN npm install
+RUN yarn install --production=true
 
 ENV PORT 80
 EXPOSE 80
