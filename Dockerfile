@@ -3,7 +3,7 @@ FROM node:12-alpine
 ADD ./ /opt/app
 WORKDIR /opt/app
 
-RUN yarn install --production=true
+RUN npm install
 
 RUN npm prune --production
 
