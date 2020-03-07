@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@prisma/client": "^2.0.0-preview021",
+    "@types/typescript": "^2.0.0",
     "bcryptjs": "2.4.3",
     "graphql": "14.6.0",
     "graphql-shield": "5.7.3",
@@ -21,16 +22,16 @@
     "jsonwebtoken": "8.5.1",
     "nexus": "0.12.0-rc.9",
     "nexus-prisma": "0.9.1",
-    "ts-node": "8.5.2"
+    "ts-node": "8.5.2",
+    "typescript": "3.7.2",
+    "prisma2": "^2.0.0-preview021"
   },
   "devDependencies": {
     "@types/bcryptjs": "2.4.2",
     "@types/jsonwebtoken": "8.3.5",
     "@types/node": "^12.12.7",
     "@types/ws": "6.0.3",
-    "prisma2": "^2.0.0-preview021",
-    "ts-node-dev": "1.0.0-pre.44",
-    "typescript": "3.7.2"
+    "ts-node-dev": "1.0.0-pre.44"
   },
   "prettier": {
     "singleQuote": true,
