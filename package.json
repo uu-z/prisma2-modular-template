@@ -14,23 +14,24 @@
     "migrate:up": "prisma2 migrate up --experimental"
   },
   "dependencies": {
-    "@prisma/client": "^2.0.0-preview023",
+    "@nexus/schema": "^0.13.1",
+    "@prisma/client": "^2.0.0-beta.1",
     "bcryptjs": "2.4.3",
     "graphql": "14.6.0",
     "graphql-shield": "5.7.3",
     "graphql-yoga": "1.18.3",
     "jsonwebtoken": "8.5.1",
-    "nexus": "0.12.0-rc.9",
-    "nexus-prisma": "0.9.1",
+    "nexus": "^0.12.0",
+    "nexus-prisma": "^0.12.0",
     "ts-node": "8.5.2",
-    "typescript": "3.7.2",
-    "prisma2": "^2.0.0-preview023"
+    "typescript": "3.7.2"
   },
   "devDependencies": {
+    "@prisma/cli": "^2.0.0-beta.1",
     "@types/bcryptjs": "2.4.2",
-    "@types/typescript": "^2.0.0",
     "@types/jsonwebtoken": "8.3.5",
     "@types/node": "^12.12.7",
+    "@types/typescript": "^2.0.0",
     "@types/ws": "6.0.3",
     "ts-node-dev": "1.0.0-pre.44"
   },
