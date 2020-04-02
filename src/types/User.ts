@@ -3,8 +3,6 @@ import { compare, hash } from 'bcryptjs'
 import { sign } from 'jsonwebtoken'
 import { stringArg } from 'nexus'
 import { APP_SECRET } from '../utils'
-import { InputDefinitionBlock } from '@nexus/schema/dist/core'
-import { createContext } from '../context'
 
 export const AuthPayload = objectType({
   name: 'AuthPayload',
