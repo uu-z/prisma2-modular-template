@@ -1,0 +1,355 @@
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+type BatchPayload {
+  count: Int!
+}
+
+input BooleanFilter {
+  equals: Boolean
+  not: Boolean
+}
+
+scalar DateTime
+
+input DateTimeFilter {
+  equals: DateTime
+  not: DateTime
+  in: [DateTime!]
+  notIn: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  gt: DateTime
+  gte: DateTime
+}
+
+input FirstNameLastNameCompoundUniqueInput {
+  firstName: String!
+  lastName: String!
+}
+
+type Mutation {
+  createOnePost(data: PostCreateInput!): Post!
+  deleteOnePost(where: PostWhereUniqueInput!): Post
+  deleteManyPost(where: PostWhereInput): BatchPayload!
+  updateManyPost(data: PostUpdateManyMutationInput!, where: PostWhereInput): BatchPayload!
+  updateOnePost(data: PostUpdateInput!, where: PostWhereUniqueInput!): Post
+  createOneUser(data: UserCreateInput!): User!
+  deleteOneUser(where: UserWhereUniqueInput!): User
+  deleteManyUser(where: UserWhereInput): BatchPayload!
+  updateOneUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  updateManyUser(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  signup(name: String, email: String!, password: String!): AuthPayload!
+  login(email: String!, password: String!): AuthPayload!
+}
+
+input NullableStringFilter {
+  equals: String
+  not: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+}
+
+enum OrderByArg {
+  asc
+  desc
+}
+
+type Post {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  published: Boolean!
+  title: String!
+  content: String
+  author: User
+}
+
+input PostCreateInput {
+  id: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  published: Boolean
+  title: String!
+  content: String
+  author: UserCreateOneWithoutPostsInput
+}
+
+input PostCreateManyWithoutAuthorInput {
+  create: [PostCreateWithoutAuthorInput!]
+  connect: [PostWhereUniqueInput!]
+}
+
+input PostCreateWithoutAuthorInput {
+  id: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  published: Boolean
+  title: String!
+  content: String
+}
+
+input PostFilter {
+  every: PostWhereInput
+  some: PostWhereInput
+  none: PostWhereInput
+}
+
+input PostOrderByInput {
+  id: OrderByArg
+  createdAt: OrderByArg
+  updatedAt: OrderByArg
+  published: OrderByArg
+  title: OrderByArg
+  content: OrderByArg
+}
+
+input PostScalarWhereInput {
+  id: StringFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  published: BooleanFilter
+  title: StringFilter
+  content: NullableStringFilter
+  AND: [PostScalarWhereInput!]
+  OR: [PostScalarWhereInput!]
+  NOT: [PostScalarWhereInput!]
+}
+
+input PostUpdateInput {
+  id: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  published: Boolean
+  title: String
+  content: String
+  author: UserUpdateOneWithoutPostsInput
+}
+
+input PostUpdateManyDataInput {
+  id: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  published: Boolean
+  title: String
+  content: String
+}
+
+input PostUpdateManyMutationInput {
+  id: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  published: Boolean
+  title: String
+  content: String
+}
+
+input PostUpdateManyWithoutAuthorInput {
+  create: [PostCreateWithoutAuthorInput!]
+  connect: [PostWhereUniqueInput!]
+  set: [PostWhereUniqueInput!]
+  disconnect: [PostWhereUniqueInput!]
+  delete: [PostWhereUniqueInput!]
+  update: [PostUpdateWithWhereUniqueWithoutAuthorInput!]
+  updateMany: [PostUpdateManyWithWhereNestedInput!]
+  deleteMany: [PostScalarWhereInput!]
+  upsert: [PostUpsertWithWhereUniqueWithoutAuthorInput!]
+}
+
+input PostUpdateManyWithWhereNestedInput {
+  where: PostScalarWhereInput!
+  data: PostUpdateManyDataInput!
+}
+
+input PostUpdateWithoutAuthorDataInput {
+  id: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  published: Boolean
+  title: String
+  content: String
+}
+
+input PostUpdateWithWhereUniqueWithoutAuthorInput {
+  where: PostWhereUniqueInput!
+  data: PostUpdateWithoutAuthorDataInput!
+}
+
+input PostUpsertWithWhereUniqueWithoutAuthorInput {
+  where: PostWhereUniqueInput!
+  update: PostUpdateWithoutAuthorDataInput!
+  create: PostCreateWithoutAuthorInput!
+}
+
+input PostWhereInput {
+  id: StringFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  published: BooleanFilter
+  title: StringFilter
+  content: NullableStringFilter
+  AND: [PostWhereInput!]
+  OR: [PostWhereInput!]
+  NOT: [PostWhereInput!]
+  author: UserWhereInput
+}
+
+input PostWhereUniqueInput {
+  id: String
+}
+
+type Query {
+  post(where: PostWhereUniqueInput!): Post
+  posts(
+    where: PostWhereInput
+    orderBy: PostOrderByInput
+    skip: Int
+    after: PostWhereUniqueInput
+    before: PostWhereUniqueInput
+    first: Int
+    last: Int
+  ): [Post!]!
+  user(where: UserWhereUniqueInput!): User
+  users(
+    where: UserWhereInput
+    orderBy: UserOrderByInput
+    skip: Int
+    after: UserWhereUniqueInput
+    before: UserWhereUniqueInput
+    first: Int
+    last: Int
+  ): [User!]!
+}
+
+input StringFilter {
+  equals: String
+  not: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+}
+
+type User {
+  id: String!
+  name: String
+  email: String!
+  firstName: String
+  lastName: String
+  posts(
+    orderBy: PostOrderByInput
+    skip: Int
+    after: PostWhereUniqueInput
+    before: PostWhereUniqueInput
+    first: Int
+    last: Int
+  ): [Post!]!
+}
+
+input UserCreateInput {
+  id: String
+  email: String!
+  password: String!
+  name: String
+  firstName: String
+  lastName: String
+  posts: PostCreateManyWithoutAuthorInput
+}
+
+input UserCreateOneWithoutPostsInput {
+  create: UserCreateWithoutPostsInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutPostsInput {
+  id: String
+  email: String!
+  password: String!
+  name: String
+  firstName: String
+  lastName: String
+}
+
+input UserOrderByInput {
+  id: OrderByArg
+  email: OrderByArg
+  password: OrderByArg
+  name: OrderByArg
+  firstName: OrderByArg
+  lastName: OrderByArg
+}
+
+input UserUpdateInput {
+  id: String
+  email: String
+  password: String
+  name: String
+  firstName: String
+  lastName: String
+  posts: PostUpdateManyWithoutAuthorInput
+}
+
+input UserUpdateManyMutationInput {
+  id: String
+  email: String
+  password: String
+  name: String
+  firstName: String
+  lastName: String
+}
+
+input UserUpdateOneWithoutPostsInput {
+  create: UserCreateWithoutPostsInput
+  connect: UserWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: UserUpdateWithoutPostsDataInput
+  upsert: UserUpsertWithoutPostsInput
+}
+
+input UserUpdateWithoutPostsDataInput {
+  id: String
+  email: String
+  password: String
+  name: String
+  firstName: String
+  lastName: String
+}
+
+input UserUpsertWithoutPostsInput {
+  update: UserUpdateWithoutPostsDataInput!
+  create: UserCreateWithoutPostsInput!
+}
+
+input UserWhereInput {
+  id: StringFilter
+  email: StringFilter
+  password: StringFilter
+  name: NullableStringFilter
+  posts: PostFilter
+  firstName: NullableStringFilter
+  lastName: NullableStringFilter
+  AND: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+}
+
+input UserWhereUniqueInput {
+  id: String
+  email: String
+  firstName_lastName: FirstNameLastNameCompoundUniqueInput
+}

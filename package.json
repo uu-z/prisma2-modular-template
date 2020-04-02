@@ -4,10 +4,11 @@
   "scripts": {
     "start": "ts-node -T src/server",
     "clean": "rm -rf dist",
-    "generate": "npm -s run generate:prisma && npm -s run generate:nexus",
-    "generate:prisma": "prisma2 generate",
-    "generate:nexus": "ts-node --transpile-only src/schema",
-    "postinstall": "npm -s run generate",
+    "gen": "npm -s run gen:prisma && npm -s run gen:nexus",
+    "gen:prisma": "prisma2 generate",
+    "gen:nexus": "ts-node --transpile-only src/schema",
+    "gen:client": "generate-graphql-client -e http://localhost:4000 -p -o ./src/generated/gqlClient",
+    "postinstall": "npm -s run gen",
     "dev": "ts-node-dev --no-notify --respawn --transpileOnly src/server",
     "seed": "ts-node prisma/seed",
     "migrate": "prisma2 migrate save --experimental",
@@ -18,6 +19,7 @@
     "@prisma/client": "^2.0.0-beta.1",
     "bcryptjs": "2.4.3",
     "graphql": "14.6.0",
+    "graphql-request": "^1.8.2",
     "graphql-shield": "5.7.3",
     "graphql-yoga": "1.18.3",
     "jsonwebtoken": "8.5.1",
@@ -27,12 +29,13 @@
     "typescript": "3.7.2"
   },
   "devDependencies": {
-    "@prisma/cli": "^2.0.0-beta.1",
+    "@prisma/cli": "^2.0.0-alpha.1024",
     "@types/bcryptjs": "2.4.2",
     "@types/jsonwebtoken": "8.3.5",
     "@types/node": "^12.12.7",
     "@types/typescript": "^2.0.0",
     "@types/ws": "6.0.3",
+    "graphql-typed-client": "^1.7.4",
     "ts-node-dev": "1.0.0-pre.44"
   },
   "prettier": {

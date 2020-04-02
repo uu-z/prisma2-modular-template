@@ -1,8 +1,10 @@
-import { objectType, extendType, ext } from 'nexus'
+import { objectType, extendType, ext, inputObjectType } from 'nexus'
 import { compare, hash } from 'bcryptjs'
 import { sign } from 'jsonwebtoken'
 import { stringArg } from 'nexus'
 import { APP_SECRET } from '../utils'
+import { InputDefinitionBlock } from '@nexus/schema/dist/core'
+import { createContext } from '../context'
 
 export const AuthPayload = objectType({
   name: 'AuthPayload',
@@ -51,7 +53,7 @@ export const userMutation = extendType({
         password: stringArg({ nullable: false }),
       },
       resolve: async (_parent, args, ctx) => {
-        const { name, email, password } = args
+        const { name, email, password, test } = args
         const hashedPassword = await hash(password, 10)
         const user = await ctx.prisma.user.create({
           data: {
