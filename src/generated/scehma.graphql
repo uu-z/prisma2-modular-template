@@ -69,7 +69,7 @@ enum OrderByArg {
 }
 
 type Post {
-  author: User
+  author: User!
   content: String
   createdAt: DateTime!
   id: String!
@@ -79,7 +79,7 @@ type Post {
 }
 
 input PostCreateInput {
-  author: UserCreateOneWithoutPostsInput
+  author: UserCreateOneWithoutPostsInput!
   content: String
   createdAt: DateTime
   id: String
@@ -109,6 +109,8 @@ input PostFilter {
 }
 
 input PostOrderByInput {
+  author: OrderByArg
+  authorId: OrderByArg
   content: OrderByArg
   createdAt: OrderByArg
   id: OrderByArg
@@ -119,6 +121,7 @@ input PostOrderByInput {
 
 input PostScalarWhereInput {
   AND: [PostScalarWhereInput!]
+  authorId: StringFilter
   content: NullableStringFilter
   createdAt: DateTimeFilter
   id: StringFilter
@@ -130,7 +133,7 @@ input PostScalarWhereInput {
 }
 
 input PostUpdateInput {
-  author: UserUpdateOneWithoutPostsInput
+  author: UserUpdateOneRequiredWithoutPostsInput
   content: String
   createdAt: DateTime
   id: String
@@ -197,6 +200,7 @@ input PostUpsertWithWhereUniqueWithoutAuthorInput {
 input PostWhereInput {
   AND: [PostWhereInput!]
   author: UserWhereInput
+  authorId: StringFilter
   content: NullableStringFilter
   createdAt: DateTimeFilter
   id: StringFilter
@@ -293,11 +297,9 @@ input UserUpdateManyMutationInput {
   password: String
 }
 
-input UserUpdateOneWithoutPostsInput {
+input UserUpdateOneRequiredWithoutPostsInput {
   connect: UserWhereUniqueInput
   create: UserCreateWithoutPostsInput
-  delete: Boolean
-  disconnect: Boolean
   update: UserUpdateWithoutPostsDataInput
   upsert: UserUpsertWithoutPostsInput
 }
